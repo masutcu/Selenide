@@ -10,6 +10,10 @@ public class TestCenterPage {
     public SelenideElement kullaniciSifresi=$("#exampleInputPassword1"); //css olduğunda direk tırnak içine yaz tanımlamaya gerek yok
     public SelenideElement submitButton=$(By.xpath("//button[@type='submit']"));
     public SelenideElement girisMesaji=$(By.xpath("//*[contains(text(),'You logged into a secure area!')]"));
+    public SelenideElement checkbox1=$(By.id("box1"));
+    public SelenideElement checkbox2=$(By.id("box2"));
+    public SelenideElement red=$(By.id("red"));
+    public SelenideElement football=$(By.id("football"));
 
 
 }
