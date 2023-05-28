@@ -1,15 +1,16 @@
 package stepdefinitions;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import pages.TestCenterPage;
 
-import static com.codeborne.selenide.Condition.checked;
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.sleep;
+import static com.codeborne.selenide.Selenide.switchTo;
 
 public class TestCenterStepDefinitions {
     TestCenterPage testCenterPage = new TestCenterPage();
@@ -69,10 +70,34 @@ public class TestCenterStepDefinitions {
         //selectOptionByValue ==> "" value değeri alır
 
         testCenterPage.year.selectOption(String.valueOf(year)); //visible text olarak alır
-        sleep(3000); //hard wait
+        sleep(3000); //selenide wait. selenide den import ettik 3 saniyeye kadar bekler
         testCenterPage.month.selectOption(month); //görünen metin POPÜLER OLAN
-        sleep(3000); //hard wait
+        sleep(3000); // wait
         testCenterPage.day.selectOption(day-1);
-        sleep(3000); //hard wait
+        //Selenide.sleep(3000); //dinamik  3 saniyeye kadar bekler
+        //Thread.sleep(3000); // hard 3 saniye bekler
+    }
+
+    @And("alert prompt butonuna tiklar")
+    public void alertPromptButonunaTiklar() {
+        testCenterPage.alertPromptButton.click();
+        
+    }
+
+    @And("kullanici alerte {string} metnini yazar ve ok tiklar")
+    public void kullaniciAlerteMetniniYazarVeOkTiklar(String text) throws InterruptedException {
+
+        switchTo().alert().sendKeys(text);
+        Thread.sleep(3000);
+        switchTo().alert().accept();
+        sleep(3000);
+        
+    }
+
+    @And("kullanici sonucun {string} icerdigini dogrular")
+    public void kullaniciSonucunIcerdiginiDogrular(String yazi) {
+        testCenterPage.sonuc.shouldHave(text(yazi)); //selenide
+      //  Assert.assertTrue(testCenterPage.sonuc.getText().contains(yazi)); //selenium junit
+        sleep(3000);
     }
 }

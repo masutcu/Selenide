@@ -17,6 +17,9 @@ public class TestCenterPage {
     public SelenideElement year=$(By.id("year"));
     public SelenideElement month=$(By.id("month"));
     public SelenideElement day=$(By.id("day"));
+    public SelenideElement alertPromptButton=$(By.xpath("//button[@onclick='jsPrompt()']"));
+    public SelenideElement sonuc=$("#result"); //#pound işareti css de id demektir
+
 
 
 }

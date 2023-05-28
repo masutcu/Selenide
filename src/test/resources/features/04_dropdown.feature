@@ -9,7 +9,7 @@ Feature: dropdown
 
 
   #Selenide de
-  #Select objesi kullanmaya gerek yoktur. selenide de 3 temel select option vardır.
+  #Select objesi oluşturmaya (kullanmaya) gerek yoktur.  3 temel select option vardır.
   #selectOption() ==> index alır
   #selectOption() ==> "" içinde yani string olarak visible text alarak kullanılır
   #selectOptionByValue ==> "" value değeri alır
