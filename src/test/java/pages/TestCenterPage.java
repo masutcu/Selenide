@@ -14,6 +14,9 @@ public class TestCenterPage {
     public SelenideElement checkbox2=$(By.id("box2"));
     public SelenideElement red=$(By.id("red"));
     public SelenideElement football=$(By.id("football"));
+    public SelenideElement year=$(By.id("year"));
+    public SelenideElement month=$(By.id("month"));
+    public SelenideElement day=$(By.id("day"));
 
 
 }

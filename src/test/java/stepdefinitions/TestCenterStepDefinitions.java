@@ -9,6 +9,7 @@ import pages.TestCenterPage;
 
 import static com.codeborne.selenide.Condition.checked;
 import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.sleep;
 
 public class TestCenterStepDefinitions {
     TestCenterPage testCenterPage = new TestCenterPage();
@@ -58,5 +59,20 @@ public class TestCenterStepDefinitions {
             testCenterPage.football.click();
             testCenterPage.football.shouldBe(checked);
         }
+    }
+
+    @And("kullanici yil olarak {int}, ay olarak {string}, gun olarak {int} secer")
+    public void kullaniciYilOlarakAyOlarakGunOlarakSecer(int year, String month, int day) {
+        //Select objesi kullanmaya gerek yoktur. selenide de 3 temel select option vardır.
+        //selectOption() ==> index alır
+        //selectOption() ==> "" içinde yani string olarak visible text alarak kullanılır
+        //selectOptionByValue ==> "" value değeri alır
+
+        testCenterPage.year.selectOption(String.valueOf(year)); //visible text olarak alır
+        sleep(3000); //hard wait
+        testCenterPage.month.selectOption(month); //görünen metin POPÜLER OLAN
+        sleep(3000); //hard wait
+        testCenterPage.day.selectOption(day-1);
+        sleep(3000); //hard wait
     }
 }
