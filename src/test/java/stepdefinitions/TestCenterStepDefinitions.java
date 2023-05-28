@@ -2,15 +2,19 @@ package stepdefinitions;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.WebDriverRunner;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import pages.TestCenterPage;
 
+import java.time.Duration;
+
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.sleep;
 import static com.codeborne.selenide.Selenide.switchTo;
+import static com.codeborne.selenide.WebDriverRunner.url;
 
 public class TestCenterStepDefinitions {
     TestCenterPage testCenterPage = new TestCenterPage();
@@ -99,5 +103,24 @@ public class TestCenterStepDefinitions {
         testCenterPage.sonuc.shouldHave(text(yazi)); //selenide
       //  Assert.assertTrue(testCenterPage.sonuc.getText().contains(yazi)); //selenium junit
         sleep(3000);
+    }
+
+    @And("switch to farme {int}")
+    public void switchToFarme(int numOfFrame) {
+        switchTo().frame(numOfFrame-1);//index 0 dan başladığı için
+
+    }
+
+    @And("kullanici back to techproeducation linkine tiklar")
+    public void kullaniciBackToTechproeducationLinkineTiklar() {
+        testCenterPage.techprolink.click(); //yeni pencere açıldı
+      // System.out.println("sayfa url : "+ WebDriverRunner.url());
+        System.out.println("sayfa url : "+ url()); //sayfa url sini verecek
+    }
+
+    @And("switch to window {int}")
+    public void switchToWindow(int targetIndexWindow) {
+        switchTo().window(targetIndexWindow-1, Duration.ofSeconds(5));//duration second zorunlu değil bekleme ekliyor
+        System.out.println("yeni sayfa url :"+url()); //yeni sayfa url sini verecek
     }
 }
