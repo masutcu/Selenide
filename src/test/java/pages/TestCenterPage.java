@@ -22,6 +22,10 @@ public class TestCenterPage {
     public SelenideElement techprolink=$(By.xpath("//a[@type='button']"));
     public SelenideElement kaynak=$("#draggable"); //#id işareti
     public SelenideElement hedef=$("#droppable");
+    public SelenideElement startButton=$(By.xpath("//div[@id='start']//button"));
+    public SelenideElement helloText=$(By.xpath("//div[@id='finish']//h4"));
+    public SelenideElement googleImg=$(".lnXdpd");
+
 
 
 

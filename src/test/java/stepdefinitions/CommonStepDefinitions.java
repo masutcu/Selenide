@@ -1,8 +1,13 @@
 package stepdefinitions;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.*;
+
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.*;
@@ -40,5 +45,11 @@ public class CommonStepDefinitions {
       //  Configuration.holdBrowserOpen=false;  //Default durum
         Configuration.holdBrowserOpen=true;
 
+    }
+
+    @And("tum ekran goruntusunu alir")
+    public void tumEkranGoruntusunuAlir() {
+        String date = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+        Selenide.screenshot(date);
     }
 }

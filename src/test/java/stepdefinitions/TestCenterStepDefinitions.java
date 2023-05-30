@@ -7,6 +7,9 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.TestCenterPage;
 
 import java.time.Duration;
@@ -130,10 +133,7 @@ public class TestCenterStepDefinitions {
                 dragAndDrop(testCenterPage.kaynak,testCenterPage.hedef).build().perform();
         //veya koordinatlar ile 3 parametre, 1 kaynak elementi, 2. x koordinat 3. y kordinat
         actions().dragAndDropBy(testCenterPage.kaynak,463,-19).build().perform();
-
-
     }
-
 
     @And("kullanici source elementini {int} by {int} koordinatlarina surukler")
     public void kullaniciSourceElementiniByKoordinatlarinaSurukler(int xOffset, int yOffset) {
@@ -146,5 +146,30 @@ public class TestCenterStepDefinitions {
         String styValue=testCenterPage.kaynak.getAttribute("style");
         System.out.println(styValue);
         Assert.assertTrue( styValue.contains(String.valueOf(x)) && styValue.contains(String.valueOf(y)));
+    }
+
+    @And("start butonuna tiklar")
+    public void startButonunaTiklar() {
+        testCenterPage.startButton.click();
+
+    }
+
+    @Then("kullanici {string} yazisini dogrular")
+    public void kullaniciYazisiniDogrular(String arg0) throws InterruptedException {
+        Assert.assertEquals(arg0,testCenterPage.helloText.getText());//fail bekleme sorunu
+       // 1. WebDriver wait kullanarak beklenebilir
+     //   WebDriverWait wait=new WebDriverWait(WebDriverRunner.getWebDriver(),Duration.ofSeconds(10));
+     //   wait.until(ExpectedConditions.visibilityOf(testCenterPage.helloText)); //explicitwait
+     //   Assert.assertEquals(arg0,testCenterPage.helloText.getText());
+
+        //2. selenide wait
+        testCenterPage.helloText.should(visible,Duration.ofSeconds(20));
+        Assert.assertEquals(arg0,testCenterPage.helloText.getText());
+}
+
+    @And("google image goruntusunu alir")
+    public void googleImageGoruntusunuAlir() {
+        testCenterPage.googleImg.screenshot();
+
     }
 }
