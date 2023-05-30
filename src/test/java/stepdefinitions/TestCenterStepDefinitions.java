@@ -12,8 +12,7 @@ import pages.TestCenterPage;
 import java.time.Duration;
 
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selenide.sleep;
-import static com.codeborne.selenide.Selenide.switchTo;
+import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.url;
 
 public class TestCenterStepDefinitions {
@@ -105,8 +104,8 @@ public class TestCenterStepDefinitions {
         sleep(3000);
     }
 
-    @And("switch to farme {int}")
-    public void switchToFarme(int numOfFrame) {
+    @And("switch to frame {int}")
+    public void switchToFrame(int numOfFrame) {
         switchTo().frame(numOfFrame-1);//index 0 dan başladığı için
 
     }
@@ -122,5 +121,30 @@ public class TestCenterStepDefinitions {
     public void switchToWindow(int targetIndexWindow) {
         switchTo().window(targetIndexWindow-1, Duration.ofSeconds(5));//duration second zorunlu değil bekleme ekliyor
         System.out.println("yeni sayfa url :"+url()); //yeni sayfa url sini verecek
+    }
+
+    @And("kullanici source elementi target elementine surukler")
+    public void kullaniciSourceElementiTargetElementineSurukler() {
+        //SELENİDE DE DİREK actions() metodunu selenide den import ile kullanabiliriz
+        actions().
+                dragAndDrop(testCenterPage.kaynak,testCenterPage.hedef).build().perform();
+        //veya koordinatlar ile 3 parametre, 1 kaynak elementi, 2. x koordinat 3. y kordinat
+        actions().dragAndDropBy(testCenterPage.kaynak,463,-19).build().perform();
+
+
+    }
+
+
+    @And("kullanici source elementini {int} by {int} koordinatlarina surukler")
+    public void kullaniciSourceElementiniByKoordinatlarinaSurukler(int xOffset, int yOffset) {
+        actions().dragAndDropBy(testCenterPage.kaynak,xOffset,yOffset).build().perform();
+        
+    }
+
+    @And("verilen koordinatlara {int} by {int} suruklendigini dogrular")
+    public void verilenKoordinatlaraBySuruklendiginiDogrular(int x, int y) {
+        String styValue=testCenterPage.kaynak.getAttribute("style");
+        System.out.println(styValue);
+        Assert.assertTrue( styValue.contains(String.valueOf(x)) && styValue.contains(String.valueOf(y)));
     }
 }

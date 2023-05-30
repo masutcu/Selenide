@@ -20,6 +20,8 @@ public class TestCenterPage {
     public SelenideElement alertPromptButton=$(By.xpath("//button[@onclick='jsPrompt()']"));
     public SelenideElement sonuc=$("#result"); //#pound işareti css de id demektir
     public SelenideElement techprolink=$(By.xpath("//a[@type='button']"));
+    public SelenideElement kaynak=$("#draggable"); //#id işareti
+    public SelenideElement hedef=$("#droppable");
 
 
 
