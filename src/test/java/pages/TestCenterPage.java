@@ -25,6 +25,7 @@ public class TestCenterPage {
     public SelenideElement startButton=$(By.xpath("//div[@id='start']//button"));
     public SelenideElement helloText=$(By.xpath("//div[@id='finish']//h4"));
     public SelenideElement googleImg=$(".lnXdpd");
+    public SelenideElement amazonFooter=$(".navFooterMoreOnAmazon");
 
 
 

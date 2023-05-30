@@ -172,4 +172,10 @@ public class TestCenterStepDefinitions {
         testCenterPage.googleImg.screenshot();
 
     }
+
+    @And("footerelementi gorunur sekilde goster")
+    public void footerelementiGorunurSekildeGoster() {
+
+        executeJavaScript("arguments[0].scrollIntoView(true);",testCenterPage.amazonFooter);
+    }
 }
