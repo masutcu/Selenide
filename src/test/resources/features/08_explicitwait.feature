@@ -7,12 +7,6 @@ Feature: explicitwait
   And sayfayi acik tutar
 
 
-
-
-
-
-
-
     # Selenide de ExplicitWait
     # selenide'de varsayılan dinamik bekleme süresi 4 saniyedir. fazlası için explicit wait kullanılır
     # belirli (local) elementler için maxsimum bekleme süresidir.(implicitwait genel)

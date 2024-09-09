@@ -7,12 +7,6 @@ Feature: iframe _ windows
     And switch to window 2
     Then sayfayi acik tutar
 
-
-
-
-
-
-
     #Selenide de
   #Selenide iframe içindeki elementleri direk göremez  öncelikle switchTo()frame ile geçiş gerekir.
   #3 farklı yol ile geçiş yapılabilir
